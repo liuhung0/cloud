@@ -1,0 +1,25 @@
+server:
+  port: 9922
+
+spring:
+  application:
+    name: nacos-namespace-two
+  profiles:
+    active: test
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: d4d15193-ea01-4d55-b945-7be662548b01
+        group: nacos-namespace-two
+      config:
+        server-addr: 127.0.0.1:8848
+        prefix: ${spring.application.name}
+        file-extension: yml
+        namespace: d4d15193-ea01-4d55-b945-7be662548b01
+        group: nacos-namespace-two
+
+  #可以看到必须可少的配置项spring.application.name
+  #spring.cloud.nacos.discovery.server-addr指定注册中心的地址，如果你不需要注册该服务，也可以去掉该项，并删除discovery依赖
+  #spring.cloud.nacos.config.server-addr指定配置中心的地址
+  #file-extension指定配置中心中配置文件的格式
